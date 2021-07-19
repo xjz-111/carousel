@@ -4,7 +4,8 @@
 ```
 #### 一. 功能介绍
 * 支持多种格式，每种格式一个ViewModel，安顺序组装，每种ViewModel对应一个View
-* 支持轮播，单个View时即使开启轮播，默认也不会自动轮播，但可滑动切换重复显示当个View
+* 支持无线轮播，单个View时即使开启轮播，默认也不会自动轮播，但可滑动切换重复显示当个View
+* 页面onPause时，手指按下时，自动停止轮播
 * 支持自定义切换动画及时间等
 * 支持onResume和onPause(页面级，单个View的使用onPageSelected便可) 
 * 默认使用Databinding，xml必须遵循。View数据填充可选择是否手动设置
