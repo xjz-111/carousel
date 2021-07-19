@@ -8,6 +8,7 @@
 * 支持自定义切换动画及时间等
 * 支持onResume和onPause(页面级，单个View的使用onPageSelected便可) 
 * 默认使用Databinding，xml必须遵循。View数据填充可选择是否手动设置
+* CarouselView是RelativeLayout子类，如有指示器，底部页面简介等用addView()常规操作，再在onPageSelected()中动态处理
 
 #### 二. 使用
 1. 添加依赖和配置
