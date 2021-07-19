@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CarouselView">
+
+        <!--是否可以无限轮播 默认可以-->
+        <attr name="isCycle" format="boolean"/>
+
+        <!--是否可以自动轮播 默认可以-->
+        <attr name="isAutoPlay" format="boolean"/>
+
+        <!--轮播时间-->
+        <attr name="autoPlayDuration" format="integer" />
+
+    </declare-styleable>
+</resources>
