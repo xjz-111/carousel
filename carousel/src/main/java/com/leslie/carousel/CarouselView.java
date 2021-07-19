@@ -330,7 +330,7 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
                         vm.setBinding(binding);
                         final Object item = viewModel.getItem(positionInViewModel);
                         if (null != item){
-                            viewModel.initView(binding, positionInViewModel, item);
+                            viewModel.initView(binding, position, positionInViewModel, item);
                             if (viewModel.isDatabinding()) setVariable(binding, viewModel, item, position);
                             view.setTag(item);
                         }
@@ -338,13 +338,13 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
                         view.setOnClickListener(new OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                viewModel.onClick(positionInViewModel , viewModel.getItem(positionInViewModel));
+                                viewModel.onClick(position, positionInViewModel , viewModel.getItem(positionInViewModel));
                             }
                         });
                         view.setOnLongClickListener(new OnLongClickListener() {
                             @Override
                             public boolean onLongClick(View v) {
-                                return viewModel.onLongClick(positionInViewModel, viewModel.getItem(positionInViewModel));
+                                return viewModel.onLongClick(position, positionInViewModel, viewModel.getItem(positionInViewModel));
                             }
                         });
                     }
@@ -361,7 +361,7 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
         }
 
         void setVariable(@NonNull ViewDataBinding binding, @NonNull BaseCarouselViewModel vm, Object item, final int position){
-            int variable = vm.getVariable(item, position);
+            int variable = vm.getVariable(item, position, position % count);
             if (variable > 0) {
                 binding.setVariable(variable, item);
                 binding.executePendingBindings();
@@ -376,7 +376,7 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
                     BaseCarouselViewModel viewModel = vm.getViewModel();
                     int positionInViewModel = realPosition - vm.getStartPosition();
                     if (null != viewModel){
-                        viewModel.onPageSelected(positionInViewModel, viewModel.getItem(positionInViewModel));
+                        viewModel.onPageSelected(realPosition, positionInViewModel, viewModel.getItem(positionInViewModel));
                     }
                 }
             }

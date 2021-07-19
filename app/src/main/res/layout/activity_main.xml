@@ -4,7 +4,6 @@
     <data>
 
 
-
     </data>
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,6 +12,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+        <!-- 布局中定义，也可代码中初始化 -->
         <com.leslie.carousel.CarouselView
             android:id="@+id/cv"
             android:layout_width="match_parent"

@@ -22,16 +22,4 @@ public class TestVm2 extends BaseCarouselViewModel<String, Vm2Binding> {
     public int getVariable(String item, int position, final int positionInViewModel) {
         return BR.vm2;
     }
-
-    @Override
-    protected void onResume(Vm2Binding vm1Binding, int position, int positionInViewMode) {
-        super.onResume(vm1Binding, position, positionInViewMode);
-        Log.i("xjzhao", this.getClass().getSimpleName() + " - onResume " + position);
-    }
-
-    @Override
-    protected void onPause(Vm2Binding vm1Binding, int position, int positionInViewMode) {
-        super.onPause(vm1Binding, position, positionInViewMode);
-        Log.d("xjzhao", this.getClass().getSimpleName() + " - onPause " + position);
-    }
 }
