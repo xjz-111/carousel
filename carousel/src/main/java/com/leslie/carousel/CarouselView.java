@@ -32,6 +32,7 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
     private boolean isCycle;
     private boolean isAutoPlay;
     private int autoPlayDuration;
+    private int changeDuration;
     protected CarouselViewPager viewPager;
     protected CarouselViewAdapter adapter;
     private boolean isAutoPlaying;
@@ -76,6 +77,7 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
             isCycle = a.getBoolean(R.styleable.CarouselView_isCycle, true);
             isAutoPlay = a.getBoolean(R.styleable.CarouselView_isAutoPlay, true);
             autoPlayDuration = a.getInt(R.styleable.CarouselView_autoPlayDuration, autoPlayDuration);
+            changeDuration = a.getInt(R.styleable.CarouselView_changeDuration, ViewPagerScroller.DEFAULT_SCROLL_DURATION);
             a.recycle();
         }
         handler = new Handler();
@@ -94,6 +96,20 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
                 vmSparseArray.put(3, vm2.setStartPosition(count + vm1.getViewModel().getItemCount()));
             }
         }
+    }
+
+    @Override
+    public int getRealSize() {
+        int count = 0;
+        int size = vmSparseArray.size();
+        for(int i = 0; i < size; i++) {
+            int key = vmSparseArray.keyAt(i);
+            Vm vm = vmSparseArray.get(key);
+            if (null != vm && null != vm.getViewModel()){
+                count += vm.getViewModel().getItemCount();
+            }
+        }
+        return count;
     }
 
     @Override
@@ -209,7 +225,7 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
         if (isCycle || null == viewPager){
             removeAllViews();
             viewPager = null;
-            viewPager = new CarouselViewPager(getContext(), autoPlayDuration);
+            viewPager = new CarouselViewPager(getContext(), autoPlayDuration, changeDuration);
             viewPager.setCycle(isCycle);
             viewPager.setOffscreenPageLimit(5);
             viewPager.addOnPageChangeListener(this);
@@ -409,3 +425,4 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
         void onPageSelected(BaseCarouselViewModel vm, int position);
     }
 }
+

@@ -22,8 +22,12 @@ public class CarouselViewPager extends ViewPager {
     // 是否无限循环滑动
     private boolean isCycle;
 
-    public CarouselViewPager(@NonNull Context context, int autoPlayDuration) {
+    // 切换
+    private int changeDuration;
+
+    public CarouselViewPager(@NonNull Context context, int autoPlayDuration, int changeDuration) {
         super(context);
+        this.changeDuration = changeDuration;
         init(autoPlayDuration);
     }
 
@@ -40,8 +44,8 @@ public class CarouselViewPager extends ViewPager {
 
 
     private void init(int autoPlayDuration){
-        int scrollDuration = ViewPagerScroller.DEFAULT_SCROLL_DURATION;
-        if (autoPlayDuration < ViewPagerScroller.DEFAULT_SCROLL_DURATION){
+        int scrollDuration = changeDuration > 0 ? changeDuration : ViewPagerScroller.DEFAULT_SCROLL_DURATION;
+        if (isCycle && autoPlayDuration < ViewPagerScroller.DEFAULT_SCROLL_DURATION){
             scrollDuration = autoPlayDuration / 2;
         }
         ViewPagerScroller scroller = new ViewPagerScroller(getContext(), scrollDuration);

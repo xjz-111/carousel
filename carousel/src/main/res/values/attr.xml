@@ -12,5 +12,7 @@
         <!--轮播时间-->
         <attr name="autoPlayDuration" format="integer" />
 
+        <!--切换时间-->
+        <attr name="changeDuration" format="integer"/>
     </declare-styleable>
 </resources>

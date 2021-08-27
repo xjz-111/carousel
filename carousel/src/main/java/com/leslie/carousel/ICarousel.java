@@ -73,4 +73,6 @@ interface ICarousel {
     void onResume();
 
     void onPause();
+
+    int getRealSize();
 }
