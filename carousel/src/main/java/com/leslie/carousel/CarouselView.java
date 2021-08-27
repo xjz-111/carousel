@@ -210,6 +210,7 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
             removeAllViews();
             viewPager = null;
             viewPager = new CarouselViewPager(getContext(), autoPlayDuration);
+            viewPager.setCycle(isCycle);
             viewPager.setOffscreenPageLimit(5);
             viewPager.addOnPageChangeListener(this);
             viewPager.setAdapter(adapter = new CarouselViewAdapter());

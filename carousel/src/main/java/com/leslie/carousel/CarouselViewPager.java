@@ -19,6 +19,9 @@ public class CarouselViewPager extends ViewPager {
     // 是否可滑动
     private boolean isScrollable = true;
 
+    // 是否无限循环滑动
+    private boolean isCycle;
+
     public CarouselViewPager(@NonNull Context context, int autoPlayDuration) {
         super(context);
         init(autoPlayDuration);
@@ -76,7 +79,15 @@ public class CarouselViewPager extends ViewPager {
                     if (xDistance < yDistance) {
                         parent.requestDisallowInterceptTouchEvent(false);
                     } else {
-                        parent.requestDisallowInterceptTouchEvent(true);
+                        if (isCycle){
+                            parent.requestDisallowInterceptTouchEvent(true);
+                        } else {
+                            int currentItem = getCurrentItem();
+                            if (currentItem == 0 || currentItem == getChildCount() - 1){
+                                parent.requestDisallowInterceptTouchEvent(false);
+                            }
+                        }
+
                     }
                 }
                 break;
@@ -108,5 +119,9 @@ public class CarouselViewPager extends ViewPager {
 
     public void setScrollable(boolean isScrollable) {
         this.isScrollable = isScrollable;
+    }
+
+    public void setCycle(boolean isCycle) {
+        this.isCycle = isCycle;
     }
 }
