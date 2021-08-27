@@ -50,7 +50,7 @@ public class CarouselViewPager extends ViewPager {
     }
 
     // 滑动距离及坐标
-    private float xDistance, yDistance, xLast, yLast;
+    private float xDistance, yDistance, xLast, yLast, downX, downY;
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -60,8 +60,8 @@ public class CarouselViewPager extends ViewPager {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 xDistance = yDistance = 0f;
-                xLast = ev.getX();
-                yLast = ev.getY();
+                downX = xLast = ev.getX();
+                downY = yLast = ev.getY();
                 break;
             case MotionEvent.ACTION_MOVE:
                 final float curX = ev.getX();
@@ -75,15 +75,15 @@ public class CarouselViewPager extends ViewPager {
 
                 ViewParent parent = getParent();
                 if (parent != null) {
-                    // 横向滑动小于纵向滑动时不截断事件
+                    // 横向滑动小于纵向滑动时不拦截事件
                     if (xDistance < yDistance) {
                         parent.requestDisallowInterceptTouchEvent(false);
                     } else {
-                        if (isCycle){
+                        if (isCycle){  // 无限轮播
                             parent.requestDisallowInterceptTouchEvent(true);
-                        } else {
+                        } else {       // 非无限轮播时，第一张和最后一张要特殊处理
                             int currentItem = getCurrentItem();
-                            if (currentItem == 0 || currentItem == getChildCount() - 1){
+                            if ((currentItem == 0 && curX > downX) || (currentItem == getChildCount() - 1 && curX < downX)){
                                 parent.requestDisallowInterceptTouchEvent(false);
                             }
                         }
