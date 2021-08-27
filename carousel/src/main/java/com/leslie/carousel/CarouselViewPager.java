@@ -15,7 +15,7 @@ import androidx.viewpager.widget.ViewPager;
  * 作者：xjzhao
  * 时间：2021-07-19 10:33
  */
-class CarouselViewPager extends ViewPager {
+public class CarouselViewPager extends ViewPager {
     // 是否可滑动
     private boolean isScrollable = true;
 
