@@ -151,7 +151,10 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
 
     @Override
     public final void onPageScrolled(int i, float v, int i2) {
-
+        if (null != onPageChangeListener){
+            Vm vm = getVm(i % count);
+            onPageChangeListener.onPageScrolled(null != vm ? vm.getViewModel() : null, i, v, i2);
+        }
     }
 
     @Override
@@ -171,7 +174,10 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
 
     @Override
     public final void onPageScrollStateChanged(int index) {
-
+        if (null != onPageChangeListener){
+            Vm vm = getVm(index % count);
+            onPageChangeListener.onPageScrollStateChanged(null != vm ? vm.getViewModel() : null, index % count);
+        }
     }
 
     private Runnable autoPlayRunnable = new Runnable() {
@@ -423,6 +429,10 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
 
     public interface OnPageChangeListener {
         void onPageSelected(BaseCarouselViewModel vm, int position);
+
+        void onPageScrollStateChanged(BaseCarouselViewModel vm, int index);
+
+        void onPageScrolled(BaseCarouselViewModel vm, int i, float v, int i2);
     }
 }
 

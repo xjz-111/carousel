@@ -51,4 +51,14 @@ public class MainActivity extends AppCompatActivity implements CarouselView.OnPa
         Log.i("xjzhao", "position : " + position);
     }
 
+    @Override
+    public void onPageScrollStateChanged(BaseCarouselViewModel vm, int index) {
+
+    }
+
+    @Override
+    public void onPageScrolled(BaseCarouselViewModel vm, int i, float v, int i2) {
+        Log.d("xjzhao", "v : " + v + "  i2 : " + i2);
+    }
+
 }
