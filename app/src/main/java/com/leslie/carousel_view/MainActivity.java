@@ -1,7 +1,6 @@
 package com.leslie.carousel_view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements CarouselView.OnPa
 
     @Override
     public void onPageSelected(BaseCarouselViewModel vm, int position) {
-        Log.i("xjzhao", "position : " + position);
     }
 
     @Override
@@ -58,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements CarouselView.OnPa
 
     @Override
     public void onPageScrolled(BaseCarouselViewModel vm, int i, float v, int i2) {
-        Log.d("xjzhao", "v : " + v + "  i2 : " + i2);
     }
 
 }
