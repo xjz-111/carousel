@@ -150,10 +150,10 @@ public class CarouselView extends RelativeLayout implements ICarousel, ViewPager
     }
 
     @Override
-    public final void onPageScrolled(int i, float v, int i2) {
+    public final void onPageScrolled(int index, float indexOffset, int indexOffsetPixels) {
         if (null != onPageChangeListener){
-            Vm vm = getVm(i % count);
-            onPageChangeListener.onPageScrolled(null != vm ? vm.getViewModel() : null, i % count, v, i2);
+            Vm vm = getVm(index % count);
+            onPageChangeListener.onPageScrolled(null != vm ? vm.getViewModel() : null, index % count, indexOffset, indexOffsetPixels);
         }
     }
 
